@@ -2,9 +2,6 @@
 set -x
 
 # Update hostname
-hostname ${vpc}-`hostname`
-echo `hostname` > /etc/hostname
-sed -i 's/localhost$/localhost '`hostname`'/' /etc/hosts
 echo "app_environment=${environment}" > /var/www/html/application.properties
 echo "app_version=${version}" >> /var/www/html/application.properties
 echo "ddbtable=${ddbtable}" >> /var/www/html/application.properties

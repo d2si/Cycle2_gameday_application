@@ -13,5 +13,6 @@ module "attendesdbmanagement_lambda" {
     Name        = "${var.application}${var.team_number}-attendesdbmanagement_lambda"
     Application = var.application
     Owner       = var.owner
+    Table       = "ddb_table_${var.application}${var.team_number}"
   }
 }

@@ -182,7 +182,7 @@ array_multisort($last,SORT_ASC, SORT_STRING,$first)
     ?>
     <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
-       <form name="register" method="post" action="<?php ''.echo htmlspecialchars($_SERVER["PHP_SELF"]).'#register';?>">
+       <form name="register" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]).'#register';?>">
              Put your lastname  : <input type="text" name="lastname"/>
              <span class="error">* <?php echo $lastnameErr;?></span>
              <br><br>

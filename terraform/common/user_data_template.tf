@@ -9,6 +9,6 @@ data "template_file" "user_data" {
     aws_region       = var.aws_region
     team_name        = "${var.application}-${var.team_number}"
     aws_sdk_version  = var.aws_sdk_version
-    api_url          = var.api_url
+    api_url          = aws_api_gateway_deployment.deployment.invoke_url
     }
 }
