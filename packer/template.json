@@ -58,11 +58,6 @@
             "destination": "/tmp/awslogs.conf"
         },
         {
-            "type": "shell",
-            "script": "{{template_dir}}/scripts/install_packages.sh",
-            "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'"
-        },
-        {
             "type": "file",
             "source": "{{template_dir}}/site/composer.json",
             "destination": "/tmp/composer.json"
@@ -71,6 +66,11 @@
             "type": "file",
             "source": "{{template_dir}}/site",
             "destination": "/tmp/html"
+        },
+        {
+            "type": "shell",
+            "script": "{{template_dir}}/scripts/install_packages.sh",
+            "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'"
         },
         {
             "type": "shell",

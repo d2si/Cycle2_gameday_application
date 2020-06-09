@@ -6,3 +6,4 @@ rm -rf /var/www/html
 mv /tmp/html /var/www/html
 
 chown -R www-data:www-data /var/www/html
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

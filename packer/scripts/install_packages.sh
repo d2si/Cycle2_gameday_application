@@ -31,4 +31,3 @@ sudo systemctl enable amazon-ssm-agent
 ## Clear unneeded binaries
 apt-get autoclean
 apt-get --purge -y autoremove
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
