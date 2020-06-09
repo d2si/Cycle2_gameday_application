@@ -1,0 +1,88 @@
+{
+    "variables": {
+        "access_key": null,
+        "secret_key": null,
+        "region": null,
+        "build_subnet": null,
+        "build_vpc": null,
+        "build_sg": "",
+        "ssh_private": "true",
+        "public_ip": "false",
+        "ami_users": null
+    },
+    "builders": [
+        {
+            "access_key": "{{user `access_key`}}",
+            "secret_key": "{{user `secret_key`}}",
+            "ami_users": "{{user `ami_users`}}",
+            "type": "amazon-ebs",
+            "region": "{{user `region`}}",
+            "instance_type": "t2.medium",
+            "subnet_id": "{{user `build_subnet`}}",
+            "vpc_id": "{{user `build_vpc`}}",
+            "security_group_id": "{{user `build_sg`}}",
+            "associate_public_ip_address": "{{user `public_ip`}}",
+            "ssh_username": "admin",
+            "ssh_timeout": "300s",
+            "ami_name": "ChaosGameday-{{timestamp}}",
+            "ami_description": "Chaos Gameday AMI - {{isotime}}",
+            "source_ami_filter": {
+                "filters": {
+                    "virtualization-type": "hvm",
+                    "name": "debian-stretch-hvm-x86_64-gp2-*",
+                    "root-device-type": "ebs"
+                },
+                "owners": [
+                    "379101102735"
+                ],
+                "most_recent": true
+            }
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "sleep 10",
+                "mkdir -p /tmp/www"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/config/inputs.conf",
+            "destination": "/tmp/inputs.conf"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/config/awslogs.conf",
+            "destination": "/tmp/awslogs.conf"
+        },
+        {
+            "type": "shell",
+            "script": "{{template_dir}}/scripts/install_packages.sh",
+            "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/site/composer.json",
+            "destination": "/tmp/composer.json"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/site",
+            "destination": "/tmp/html"
+        },
+        {
+            "type": "shell",
+            "script": "{{template_dir}}/scripts/config_site.sh",
+            "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'"
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "manifest",
+            "output": "manifest.json",
+            "strip_path": true
+        }
+    ]
+}

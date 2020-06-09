@@ -1,0 +1,9 @@
+{
+"access_key": "AKIAT46TMVJP5KX6SG36",
+"secret_key": "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",
+"build_vpc": "vpc-08cd3af45edbc619e",
+"build_subnet": "subnet-04c14f3a5f8c9d5a3",
+"public_ip": "true",
+"region": "eu-west-1",
+"ami_users": "268341914207"
+}
