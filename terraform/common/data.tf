@@ -23,7 +23,6 @@ data "aws_iam_policy_document" "attendesdbmanagement_lambda" {
       "dynamodb:BatchGetItem",
       "dynamodb:Scan",
       "dynamodb:Query",
-      "dynamodb:PutItem",
       "dynamodb:UpdateItem",
       "dynamodb:DeleteItem",
       "dynamodb:BatchWriteItem",

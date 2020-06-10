@@ -1,5 +1,5 @@
 variable "application" {
-  default = "Cycle2 gameday"
+  default = "Cycle2-gameday"
 }
 
 variable "owner" {

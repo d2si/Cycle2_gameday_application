@@ -63,6 +63,23 @@ resource "aws_api_gateway_method" "method" {
   authorization = "NONE"
 }
 
+resource "aws_api_gateway_method_settings" "apirest_settings" {
+  rest_api_id = aws_api_gateway_rest_api.apirest.id
+  stage_name  = aws_api_gateway_stage.prod.stage_name
+  method_path = "*/*"
+  settings {
+    logging_level = "INFO"
+    data_trace_enabled = true
+    metrics_enabled = true
+  }
+}
+
+resource "aws_api_gateway_stage" "prod" {
+  stage_name    = "prod"
+  rest_api_id   = aws_api_gateway_rest_api.apirest.id
+  deployment_id = aws_api_gateway_deployment.deployment.id
+}
+
 resource "aws_api_gateway_integration" "integration" {
   rest_api_id             = aws_api_gateway_rest_api.apirest.id
   resource_id             = aws_api_gateway_rest_api.apirest.root_resource_id
@@ -78,5 +95,4 @@ resource "aws_api_gateway_deployment" "deployment" {
    ]
 
    rest_api_id = aws_api_gateway_rest_api.apirest.id
-   stage_name  = "prod"
  }

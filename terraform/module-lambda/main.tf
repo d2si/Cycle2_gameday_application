@@ -1,20 +1,5 @@
-data "aws_caller_identity" "current" {
-}
-
-data "aws_iam_user" "current" {
-  user_name = element(
-    split("/", data.aws_caller_identity.current.arn),
-    length(split("/", data.aws_caller_identity.current.arn)) - 1,
-  )
-}
-
-locals {
-  permissions_boundary = data.aws_iam_user.current.permissions_boundary
-}
-
 resource "aws_iam_role" "lambda" {
   name                 = var.role_name
-  permissions_boundary = var.use_caller_boundary ? local.permissions_boundary : null
   assume_role_policy   = file("${path.module}/lambda_assume_role_policy.json")
   max_session_duration = var.role_max_session_duration
   tags = merge(
