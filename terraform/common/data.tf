@@ -7,6 +7,7 @@ data "aws_iam_policy_document" "attendesdbmanagement_lambda" {
       "logs:CreateLogGroup",
       "logs:CreateLogStream",
       "logs:PutLogEvents",
+      "lambda:*",
     ]
 
     resources = [

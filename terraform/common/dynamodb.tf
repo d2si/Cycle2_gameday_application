@@ -22,18 +22,28 @@ resource "aws_iam_role_policy" "ddb_admin" {
 
   policy = <<EOF
 {
-    "Statement": [
-        {
-            "Effect":"Allow",
-            "Action":[
-                "dynamodb:*"
-            ],
-            "Resource": "${aws_dynamodb_table.ddb.arn}"
-        }
-    ],
-    "Version": "2012-10-17"
-}
+      "Statement": [
+          {
+              "Sid":"DynamodbAllow",
+              "Effect":"Allow",
+              "Action":[
+                  "dynamodb:*"
+              ],
+              "Resource": "${aws_dynamodb_table.ddb.arn}"
+          },
+          {
+              "Sid":"LogAllow",
+              "Effect": "Allow",
+              "Action": [
+                  "logs:CreateLogStream",
+                  "logs:CreateLogGroup",
+                  "logs:PutLogEvents"
+              ],
+              "Resource": "*"
+          }
+      ],
+      "Version": "2012-10-17"
+  }
 EOF
 
 }
-
