@@ -17,7 +17,6 @@ variable "subnet_bits" {
 }
 
 variable "web_ami" {
-  default = "ami-02df01157b4a830d1"
 }
 
 variable "instance_type" {

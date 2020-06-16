@@ -5,7 +5,7 @@ resource "aws_api_gateway_account" "demo" {
 resource "aws_iam_role" "cloudwatch" {
   name = "api_gateway_cloudwatch_global"
 
-assume_role_policy = <<EOF
+  assume_role_policy = <<EOF
 {
 "Version": "2012-10-17",
 "Statement": [
@@ -23,10 +23,10 @@ EOF
 }
 
 resource "aws_iam_role_policy" "cloudwatch" {
-name = "default"
-role = aws_iam_role.cloudwatch.id
+  name = "default"
+  role = aws_iam_role.cloudwatch.id
 
-policy = <<EOF
+  policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -55,7 +55,6 @@ resource "aws_api_gateway_rest_api" "apirest" {
   }
 }
 
-
 resource "aws_api_gateway_method" "method" {
   rest_api_id   = aws_api_gateway_rest_api.apirest.id
   resource_id   = aws_api_gateway_rest_api.apirest.root_resource_id
@@ -68,9 +67,9 @@ resource "aws_api_gateway_method_settings" "apirest_settings" {
   stage_name  = aws_api_gateway_stage.prod.stage_name
   method_path = "*/*"
   settings {
-    logging_level = "INFO"
+    logging_level      = "INFO"
     data_trace_enabled = true
-    metrics_enabled = true
+    metrics_enabled    = true
   }
 }
 
@@ -90,9 +89,8 @@ resource "aws_api_gateway_integration" "integration" {
 }
 
 resource "aws_api_gateway_deployment" "deployment" {
-   depends_on = [
-     aws_api_gateway_integration.integration,
-   ]
-
-   rest_api_id = aws_api_gateway_rest_api.apirest.id
- }
+  depends_on = [
+    aws_api_gateway_integration.integration,
+  ]
+  rest_api_id = aws_api_gateway_rest_api.apirest.id
+}

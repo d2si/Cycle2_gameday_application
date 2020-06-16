@@ -1,5 +1,4 @@
 provider "aws" {
-  allowed_account_ids     = [var.allowed_account_id]
   region                  = var.aws_region
   profile                 = "ice${var.team_number}"
   shared_credentials_file = "../credentials"

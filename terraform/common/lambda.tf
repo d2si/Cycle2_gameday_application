@@ -26,8 +26,8 @@ resource "aws_lambda_permission" "attendesdbmanagement_lambda_allow_api_gateway"
   ]
 
   function_name = module.attendesdbmanagement_lambda.lambda_name
-  statement_id = "AllowExecutionFromApiGateway_users_delete"
-  action = "lambda:InvokeFunction"
-  principal = "apigateway.amazonaws.com"
-  source_arn = "arn:aws:execute-api:${var.aws_region}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.apirest.id}/${aws_api_gateway_stage.prod.stage_name}/${aws_api_gateway_method.method.http_method}/"
+  statement_id  = "AllowExecutionFromApiGateway_users_delete"
+  action        = "lambda:InvokeFunction"
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "arn:aws:execute-api:${var.aws_region}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.apirest.id}/${aws_api_gateway_stage.prod.stage_name}/${aws_api_gateway_method.method.http_method}/"
 }

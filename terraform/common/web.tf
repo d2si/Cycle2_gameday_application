@@ -83,7 +83,7 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "IamRoleManagedPolicyRoleAttachment0" {
-  role = aws_iam_role.web.id
+  role       = aws_iam_role.web.id
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 

@@ -1,11 +1,15 @@
 #Procedure de déploiement de l'application  
 
-1- Cloner le Repository https://github.com/d2si/Cycle2_gameday_application.git
+## Recupération du package applicatif sur github  : https://github.com/d2si/Cycle2_gameday_application.git
 
-2- Créer un vpc avec terraform pour la création de l'ami à partir du répertoire terraform/vpc4packer
+## Création d'un VPC temporaire pour la création d'une ami via packer
+* il faut executer terraform à partir du répertoire terraform/vpc4packer
 
-3- Lancer la création de l'ami avec packer à partir du répertoire vpc4packer
+## Lancer la création de l'ami avec packer
+* il faut executer packer à partir du répertoire packer
 
-4- Lancer le déploiement de l'application avec terraform à partir du répertoire terraform/common
+## Lancer la création de l'infrastructure et le déploiement de l'application
+* il faut executer terraform à partir du répertoire terraform/common
 
-5- Tester l'accès à l'application à partir de l'url fournit à l'étape précédente ainsi que la fonctionnalité d'entregistrement. Dès qu'une personne est enregistrée elle doit apparaitre dans la liste des participants sur le site
+## Tester l'application à partir de l'url fournit en résultat du terraform apply
+* il faut également tester l'enregistrement d'un nouveau participant. Si l'enregistrement a bien été effect, le nouveau participant doit s'affficher dans la section attendees après un rechargement complet de le page
