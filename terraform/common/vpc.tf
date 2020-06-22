@@ -2,6 +2,7 @@ provider "aws" {
   region                  = var.aws_region
   profile                 = "ice${var.team_number}"
   shared_credentials_file = "../credentials"
+  version                 = "~> 2.0"
 }
 
 resource "aws_vpc" "main" {

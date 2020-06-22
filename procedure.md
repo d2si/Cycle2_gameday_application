@@ -1,4 +1,7 @@
-#Procedure de déploiement de l'application  
+#Procedure de déploiement de l'application
+
+* Se connecter sur le server d'admin via SSM (url disponible en output de la stack cloudformation)
+  Exécuter la procédure suivante avec le user ec2-user
 
 ## Recupération du package applicatif sur github  : https://github.com/d2si/Cycle2_gameday_application.git
 

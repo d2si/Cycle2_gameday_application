@@ -1,0 +1,11 @@
+.terraform
+terraform.tfstate*
+terraform.backup
+*.swp
+credentials
+user_accounts.txt
+__pycache__/
+*.py[cod]
+*$py.class
+credentials.csv
+.git

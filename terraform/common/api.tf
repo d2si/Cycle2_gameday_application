@@ -71,6 +71,9 @@ resource "aws_api_gateway_method_settings" "apirest_settings" {
     data_trace_enabled = true
     metrics_enabled    = true
   }
+  depends_on = [
+    aws_api_gateway_account.demo,
+  ]
 }
 
 resource "aws_api_gateway_stage" "prod" {
